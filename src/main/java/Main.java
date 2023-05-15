@@ -1,12 +1,12 @@
-import controller.Server;
-
-import java.net.ServerSocket;
+import service.Server;
 
 public class Main {
     public static void main(String[] args) {
-        ServerSocket server = Server.start(80);
-        while(server != null){
-            Server.listenConnection(server);
+        try {
+            Server http = new Server(80);
+            http.waitConnection();
+        } catch (Exception error) {
+            error.printStackTrace();
         }
     }
 }
