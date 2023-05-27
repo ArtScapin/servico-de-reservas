@@ -20,7 +20,7 @@ public class SeatController {
         return dataServer;
     }
 
-    public static boolean reserveSeat(String[] request, String ip, ArrayList<Seat> dataServer){
+    public static boolean reserveSeat(String[] request, String ip, ArrayList<Seat> dataServer, Log logService){
         try {
             String slug = getSlug(request);
             String name = getName(request);
@@ -29,10 +29,10 @@ public class SeatController {
                 if (slug.compareTo(seat.getSlug()) == 0) {
 
                     if(seat.setReservedBy(name, ip)) {
-                        Log.write("The seat " + slug + " has been reserved!");
+                        logService.add("The seat " + slug + " has been reserved!");
                         return true;
                     }
-                    Log.write("Failed to reserve the seat " + slug + "!");
+                    logService.add("Failed to reserve the seat " + slug + "!");
                     return false;
                 }
             }

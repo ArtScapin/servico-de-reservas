@@ -15,13 +15,16 @@ import java.util.ArrayList;
 public class Server {
     private ServerSocket server;
     private ArrayList<Seat> dataServer;
+    private Log logService;
 
     public Server(int port) {
         try {
             this.server = new ServerSocket(port);
             this.dataServer = SeatController.initialState();
-            Log.write("Server Online in port " + port + "!");
-            Log.write("Access: http://127.0.0.1:" + port);
+            this.logService = new Log();
+            new Thread(this.logService).start();
+            logService.add("Server Online in port " + port + "!");
+            logService.add("Access: http://127.0.0.1:" + port);
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -52,12 +55,12 @@ public class Server {
             String page;
             switch (route) {
                 case "/":
-                    Log.write("New requisition in route 'index'!");
+                    logService.add("New requisition in route 'index'!");
                     page = PageRender.index(this.dataServer);
                     break;
                 case "/make-reserve":
-                    Log.write("New requisition in route 'make-reserve'!");
-                    boolean reserve = SeatController.reserveSeat(request, socket.getInetAddress().toString(), dataServer);
+                    logService.add("New requisition in route 'make-reserve'!");
+                    boolean reserve = SeatController.reserveSeat(request, socket.getInetAddress().toString(), dataServer, logService);
                     if (reserve) {
                         page = PageRender.success();
                     } else {
@@ -65,7 +68,7 @@ public class Server {
                     }
                     break;
                 case "/reserve":
-                    Log.write("New requisition in route 'reserve'!");
+                    logService.add("New requisition in route 'reserve'!");
                     String slug = SeatController.getSlug(request);
                     if (slug != null) {
                         page = PageRender.reserve(slug);
