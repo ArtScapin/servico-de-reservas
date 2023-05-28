@@ -34,10 +34,11 @@ public class Log implements Runnable {
     public void run() {
         try {
             while (true) {
-                Thread.sleep(10);
-                if(!logBuffer.isEmpty()){
-                    write(logBuffer.get(0));
-                    logBuffer.remove(0);
+                synchronized (logBuffer){
+                    if(!logBuffer.isEmpty()){
+                        write(logBuffer.get(0));
+                        logBuffer.remove(0);
+                    }
                 }
             }
         } catch (Exception error) {
