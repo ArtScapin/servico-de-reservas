@@ -1,0 +1,3 @@
+[02/07 17:55:35] Server Online in port 80!
+[02/07 17:55:35] Access: http://127.0.0.1:80
+[02/07 17:55:40] New requisition in route 'index'!
