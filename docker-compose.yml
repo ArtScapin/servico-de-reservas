@@ -1,11 +1,8 @@
-version: "3.9"
-
+version: '3'
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
       - 80:80
     volumes:
-      - C:\\log_files:/src/main/java/service/server_logs
+      - C:\\log_files:/app/so-example/arquivos_log
