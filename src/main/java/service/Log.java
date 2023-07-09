@@ -21,7 +21,7 @@ public class Log implements Runnable {
 
     private void write(String message) {
         try {
-            Path path = Paths.get("./server_logs/log.txt");
+            Path path = Paths.get("./src/main/java/server_logs/log.txt");
             String log = "[" + Server.getDateTime() + "] " + message + "\n";
             Files.write(path, log.getBytes(), CREATE, APPEND);
             System.out.print(log);
