@@ -3,6 +3,6 @@ services:
   app:
     build: .
     ports:
-      - 80:80
+      - 8080:8080
     volumes:
-      - C:\\log_files:servico-de-reservas/server_logs
+      - C:\\log_files:/app/servico-de-reservas/src/main/java/server_logs
