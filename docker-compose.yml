@@ -5,4 +5,4 @@ services:
     ports:
       - 80:80
     volumes:
-      - C:\\log_files:/app/so-example/arquivos_log
+      - C:\\log_files:servico-de-reservas/server_logs
