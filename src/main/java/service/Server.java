@@ -78,6 +78,8 @@ public class Server {
                     page = PageRender.notFound();
             }
 
+            String header = "HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=utf-8\n\n";
+            output.write(header.getBytes(StandardCharsets.UTF_8));
             output.write(page.getBytes(StandardCharsets.UTF_8));
             output.flush();
             socket.close();
