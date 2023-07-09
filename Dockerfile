@@ -12,7 +12,8 @@ RUN git pull origin main
 
 EXPOSE 8080
 
-## Compilar e executar o projeto com Maven
+# Executa o comando 'mvn package', que compila e empacota o projeto usando o Maven.
 RUN ["mvn", "package"]
 
-ENTRYPOINT ["java", "-cp" , "target/classes", "org.example.Main"]
+# Executa o comando 'java -cp target/classes Main', que inicia a execução do aplicativo Java.
+ENTRYPOINT ["java", "-cp", "target/classes", "Main"]
